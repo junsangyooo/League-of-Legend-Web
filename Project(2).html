@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <meta charset="utf-8">
+    <title>League of Legends-Game</title>
+    <link rel="stylesheet" href="Project.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe&display=swap">
+  </head>
+  <body id="body1">
+    <ul class="ul">
+      <li><a class="table" href="Prject.html"><b>Home</b></a></li>
+      <li><a class="table" href="Project(1).html"><b>Champions</b></a></li>
+      <li><a class="table" href="Project(2).html"><b>Game</b></a></li>
+      <li><a class="table" href="Project(3).html"><b>Contact</b></a></li>
+    </ul>
+    
+    <div class="deco">
+     <canvas id="myCanvas" width="1150" height="100" onclick="start()" class="cvs1"></canvas>
+     <script>
+       var canvas = document.getElementById("myCanvas");
+       var ctx = canvas.getContext("2d");
+       var img = new Image();
+       var colors = ["Xerath.jpg", "Zyra.jpg", "Rammus_Splash_02.jpg", "DkfUmpsUUAE0uXC.0.jpg", "brand.jpg", "Garen.jpg"];
+       var boxes = [];
+       var n = 0;
+       
+       function Box(xPos, yPos, xSpeed, ySpeed, color){
+         this.xPos = xPos;
+         this.yPos = yPos;
+         this.xSpeed = xSpeed;
+         this.ySpeed = ySpeed;
+         this.img = new Image();
+         this.img.src = color;
+         this.move = function(){
+           if(this.xPos > canvas.width || this.xPos <0){
+             this.xSpeed = -this.xSpeed;
+           }
+           if(this.yPos > canvas.height || this.yPos <0){
+             this.ySpeed = -this.ySpeed;
+           }
+           this.xPos += this.xSpeed;
+           this.yPos += this.ySpeed;
+         };
+         this.draw = function(){
+           img.src = this.color;
+           ctx.drawImage(this.img, this.xPos, this.yPos);
+         };
+       }
+       
+       function start(){
+         boxes[boxes.length] = new Box(0,0,3,3,colors[n%6]);
+         if (n == 0){
+           var intId = setInterval(change, 33);
+         }
+         n++;
+       }
+       
+       function change(){
+         ctx.clearRect(0,0,canvas.width, canvas.height);
+         for (var i = 0; i < boxes.length; i++){
+           boxes[i].move();
+           boxes[i].draw();
+         }
+       }
+     </script>
+    </div>
+
+    <canvas id="cvs100" class="cvs100" style="display:none;background-color:gainsboro"></canvas>
+
+    <div class="sort" style="text-align:center">
+      <h1 class="h10" id="h10">Stupid GAME</h1>
+      <form id="form10">
+        <input type="radio" name="rd" class="btn10"><span style="color:black">Easy</span><br>
+        <input type="radio" name="rd" class="btn10"><span style="color:black">Soso</span><br>
+        <input type="radio" name="rd" class="btn10"><span style="color:black">Hard</span><br>
+        <input type="button" value="Game" onclick="convert1()" sytle="color:white">
+      </form>
+      <script>
+        var ccvs = document.getElementById("cvs100");
+        var h10 = document.getElementById("h10");
+        var form = document.getElementById("form10");
+        function convert1(){
+          h10.style.display = "none";
+          form.style.display = "none";
+          ccvs.style.display = "block";
+          game();
+        }
+      </script>
+    </div>
+    
+    <div class="sort1" id="sort1">
+      <script>
+        var ccvs = document.getElementById("cvs100");
+        var ctx10 = ccvs.getContext('2d');
+        var btn20 = document.getElementById("btn20");
+        var radio = document.getElementsByName("rd");
+        var num1 = [0,1,2,3,4,5];
+        var num2 = [0,1,2,3,4,5,6,7,8];
+        var num3 = [0,1,2,3,4,5,6,7,8,9,10,11];
+        var img100 = ["Zoe.jpeg", "Vladimir.jpg", "Zac2.png", "XinZhao.jpg", "Vi.jpg", "Veigar.jpg"];
+        var img200 = ["Zoe.jpeg", "Vladimir.jpg", "Zac2.png", "XinZhao.jpg", "Vi.jpg", "Veigar.jpg", "urgot.png", "Tristana_0.jpg", "Talon.jpg"];
+        var img300 = ["Zoe.jpeg", "Vladimir.jpg", "Zac2.png", "XinZhao.jpg", "Vi.jpg", "Veigar.jpg", "urgot.png", "Tristana_0.jpg", "Talon.jpg", "Sona2.png", "Sion.jpg", "Nautilus.jpg"];
+        var img1 = new Image();
+        var sort1 = document.getElementById("sort1");
+
+        function sleep(time){
+          return new Promise(resolve=>setTimeout(resolve,time));
+        }
+        
+        async function game(){
+          if(radio[0].checked){
+            num1.sort(function(a,b){return 0.5 - Math.random()});
+            for(var i=0;i<num1.length;i++){
+              img1.src = img100[num1[i]];
+              ctx10.drawImage(img1, 100, 100, 40, 40);
+              await sleep(1000);
+            }
+          }
+          else if(radio[1].checked){
+            num2.sort(function(a,b){return 0.5 - Math.random()});
+            for(var u=0;u<num2.length;u++){
+              img1.src = img200[num2[u]];
+              this.draw = function(){
+                ctx10.drawImage(this.img1, 100, 100, 40, 40);
+                await sleep(1000);
+              }
+            }
+          }
+          else{
+            num3.sort(function(a,b){return 0.5 - Math.random()});
+            for(var o=0;o<num3.length;o++){
+              img1.src = img300[num3[o]];
+              this.draw = function(){
+                ctx10.drawImage(this.img1, 100, 100, 40, 40);
+                await sleep(1000);
+              }
+            }
+          }
+        }
+      </script>
+      
+      
+      
+    </div>
+  </body>
+</html>
